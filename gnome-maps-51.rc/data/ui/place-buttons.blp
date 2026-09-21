@@ -1,0 +1,68 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $Gjs_PlaceButtons: Box {
+  spacing: 6;
+
+  Button routeButton {
+    name: "bubble-route-button";
+    visible: false;
+    focusable: true;
+    margin-end: 6;
+    // Translators: This is a tooltip
+    tooltip-text: _("Add to new route");
+
+    child: Adw.ButtonContent {
+      icon-name: "route-button-symbolic";
+      // Translators: This is the button to find a route to a place
+      label: _("_Directions");
+      use-underline: true;
+    };
+
+    styles [
+      "suggested-action",
+      "pill",
+    ]
+  }
+
+  Button sendToButton {
+    name: "bubble-send-to-button";
+    focusable: true;
+    valign: center;
+    // Translators: This is a tooltip
+    tooltip-text: _("Share Location");
+    icon-name: "share-symbolic";
+
+    styles [
+      "circular",
+    ]
+  }
+
+  Button favoriteButton {
+    name: "bubble-favorite-button";
+    visible: false;
+    focusable: true;
+    valign: center;
+    // Translators: This is a tooltip
+    tooltip-text: _("Mark as Favorite");
+    icon-name: "favorite-symbolic";
+
+    styles [
+      "favorite",
+      "circular",
+    ]
+  }
+
+  Button editButton {
+    visible: false;
+    focusable: true;
+    valign: center;
+    // Translators: This is a tooltip
+    tooltip-text: _("Edit on OpenStreetMap");
+    icon-name: "document-edit-symbolic";
+
+    styles [
+      "circular",
+    ]
+  }
+}

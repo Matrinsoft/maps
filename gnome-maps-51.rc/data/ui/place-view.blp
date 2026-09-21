@@ -1,0 +1,242 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $Gjs_PlaceView: Box {
+  Stack mainStack {
+    Box mainBox {
+      orientation: vertical;
+
+      Box titleBox {
+        orientation: vertical;
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 12;
+        margin-bottom: 12;
+        spacing: 12;
+
+        Box {
+          orientation: vertical;
+
+          Box {
+            spacing: 6;
+
+            Image icon {
+              visible: false;
+              valign: center;
+            }
+
+            Image secondaryIcon {
+              visible: false;
+              valign: center;
+            }
+
+            Label title {
+              halign: start;
+              valign: center;
+              hexpand: true;
+              wrap: true;
+              wrap-mode: word_char;
+              max-width-chars: 20;
+              xalign: 0;
+
+              styles [
+                "title-1",
+              ]
+            }
+
+            Button sendToButtonAlt {
+              visible: false;
+              focusable: true;
+              // Translators: This is a tooltip
+              tooltip-text: _("Share location");
+              icon-name: "share-symbolic";
+              valign: center;
+            }
+          }
+
+          Label nativeName {
+            visible: false;
+            halign: start;
+            hexpand: true;
+            wrap: true;
+            wrap-mode: word_char;
+            max-width-chars: 20;
+            xalign: 0;
+            margin-top: 6;
+
+            styles [
+              "dimmed",
+            ]
+          }
+
+          Box sourceBox {
+            visible: false;
+            spacing: 6;
+            margin-top: 6;
+            orientation: horizontal;
+
+            Image sourceIcon {
+              icon-name: "layers-button-symbolic";
+              valign: center;
+
+              styles [
+                "dimmed",
+              ]
+            }
+
+            Image secondarySourceIcon {
+              visible: false;
+              valign: center;
+            }
+
+            Label sourceLabel {
+              halign: start;
+              hexpand: true;
+              wrap: true;
+              max-width-chars: 30;
+              xalign: 0;
+
+              styles [
+                "dimmed",
+              ]
+            }
+          }
+        }
+
+        Label addressLabel {
+          halign: start;
+          xalign: 0;
+          use-markup: true;
+          wrap: true;
+        }
+
+        Box placeButtons {
+          orientation: vertical;
+        }
+      }
+
+      ScrolledWindow {
+        propagate-natural-height: true;
+        vexpand: true;
+        //valign: baseline_fill;
+
+        Box {
+          orientation: vertical;
+
+          Grid content {}
+
+          Separator infoSeparator {
+            visible: false;
+
+            styles [
+              "no-margin-separator",
+            ]
+          }
+
+          Adw.ToggleGroup infoToggles {
+            visible: false;
+            halign: fill;
+            homogeneous: true;
+            margin-start: 12;
+            margin-end: 12;
+            margin-top: 12;
+            margin-bottom: 12;
+
+            Adw.Toggle departuresToggle {
+              name: "departures";
+              label: _("Departures");
+            }
+            Adw.Toggle arrivalsToggle {
+              name: "arrivals";
+              label: _("Arrivals");
+            }
+            Adw.Toggle infoToggle {
+              name: "information";
+              label: _("Information");
+            }
+          }
+
+          Adw.ToggleGroup transitModeToggles {
+            visible: false;
+            halign: start;
+            margin-start: 12;
+            margin-bottom: 12;
+
+            styles [
+              "flat",
+            ]
+          }
+
+          Separator infoStackSeparator {
+            visible: false;
+
+            styles [
+              "no-margin-separator",
+            ]
+          }
+
+          Stack infoStack {
+            visible-child: info;
+            transition-type: crossfade;
+
+            ListBox departuresArrivals {
+              vexpand: true;
+              show-separators: true;
+              selection-mode: none;
+            }
+
+            Adw.Spinner departuresArrivalsSpinner {
+              valign: fill;
+              halign: fill;
+            }
+
+            Label noDeparturesArrivalsLabel {
+              styles [
+                "dimmed",
+              ]
+            }
+
+            Box info {
+              orientation: vertical;
+              margin-top: 12;
+
+              Label wikipediaLabel {
+                use-markup: true;
+                max-width-chars: 30;
+                wrap: true;
+                xalign: 0;
+                hexpand: true;
+                halign: fill;
+                margin-start: 12;
+                margin-end: 12;
+                margin-bottom: 18;
+                visible: false;
+              }
+
+              Separator thumbnailSeparator {
+                visible: false;
+
+                styles [
+                  "no-margin-separator",
+                ]
+              }
+
+              $Gjs_PlaceViewImage thumbnail {
+                visible: false;
+                can-focus: false;
+              }
+            }
+          }
+        }
+      }
+      Revealer attributionRevealer {
+        reveal-child: false;
+        LinkButton attributionButton {
+          uri: "https://transitous.org";
+        }
+      }
+    }
+
+    Adw.Spinner spinner {}
+  }
+}

@@ -1,0 +1,14 @@
+using Gtk 4.0;
+
+template $Gjs_HeaderBarLeft: Box {
+  spacing: 6;
+
+  Button showRoutingButton {
+    focusable: true;
+    valign: center;
+    action-name: "win.show-routing";
+    // Translators: This is a tooltip
+    tooltip-text: _("Route Planner");
+    icon-name: "route-button-symbolic";
+  }
+}

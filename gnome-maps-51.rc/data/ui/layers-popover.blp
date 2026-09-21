@@ -1,0 +1,31 @@
+using Gtk 4.0;
+
+menu layers_menu {
+  section {
+    item {
+      custom: "layers_list";
+    }
+
+    item {
+      // Translators: This string uses ellipsis character
+      label: _("Open Shape Layer…");
+      action: "win.open-shape-layer";
+    }
+  }
+}
+
+template $Gjs_LayersPopover: PopoverMenu {
+  menu-model: layers_menu;
+
+  [layers_list]
+  Box layersSectionBox {
+    visible: false;
+    orientation: vertical;
+
+    ListBox layersListBox {
+      selection-mode: none;
+    }
+
+    Separator {}
+  }
+}

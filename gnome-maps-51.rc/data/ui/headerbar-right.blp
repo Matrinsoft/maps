@@ -1,0 +1,21 @@
+using Gtk 4.0;
+
+template $Gjs_HeaderBarRight: Box {
+  spacing: 6;
+
+  MenuButton layersButton {
+    focusable: true;
+    valign: center;
+    // Translators: This is a tooltip
+    tooltip-text: _("Layers");
+    icon-name: "layers-button-symbolic";
+  }
+
+  MenuButton favoritesButton {
+    focusable: true;
+    valign: center;
+    // Translators: This is a tooltip
+    tooltip-text: _("Starred Places");
+    icon-name: "starred-symbolic";
+  }
+}
